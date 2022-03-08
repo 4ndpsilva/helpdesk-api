@@ -1,4 +1,5 @@
 package com.helpdeskapi.domain.entity;
 
-public class Technician {
+public class Technician extends Person{
+
 }
