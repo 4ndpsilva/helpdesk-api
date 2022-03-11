@@ -9,7 +9,7 @@ import java.time.LocalDate;
 @Data
 public class Ticket {
     private Long id;
-    private LocalDate openDate;
+    private LocalDate openDate = LocalDate.now();
     private LocalDate closeDate;
     private Priority priority;
     private Status status;
@@ -17,4 +17,14 @@ public class Ticket {
     private String observations;
     private Customer customer;
     private Technician technician;
+
+    public Ticket(Long id, Priority priority, Status status, String title, String observations, Customer customer, Technician technician) {
+        this.id = id;
+        this.priority = priority;
+        this.status = status;
+        this.title = title;
+        this.observations = observations;
+        this.customer = customer;
+        this.technician = technician;
+    }
 }
