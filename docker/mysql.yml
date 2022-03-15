@@ -1,0 +1,25 @@
+version: '3.7'
+
+networks:
+  mysql-net:
+    driver: bridge
+
+services:
+  mysqldb:
+    image: mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: '1234'
+      MYSQL_DATABASE: 'helpdesk_db'
+    ports:
+      - '3306:3306'
+    volumes:
+      - /home/mtuser/projects/docker/volumes/mysql:/var/lib/mysql
+    networks:
+      - mysql-net
+
+  adminer:
+    image: adminer
+    ports:
+      - '9090:8080'
+    networks:
+      - mysql-net

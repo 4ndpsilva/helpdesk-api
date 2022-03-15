@@ -1,0 +1,29 @@
+version: '3.7'
+
+networks:
+  postgresql-net:
+    driver: bridge
+
+services:
+  postgresqldb:
+    image: postgres
+    environment:
+      POSTGRES_PASSWORD: '1234'
+    ports:
+      - '5432:5432'
+    volumes:
+      - /home/mtuser/projects/docker/volumes/postgresql:/var/lib/postgresql/data
+    networks:
+      - postgresql-net
+
+  pgadmin:
+    image: dpage/pgadmin4
+    environment:
+      PGADMIN_DEFAULT_EMAIL: 'admin@provider.com'
+      PGADMIN_DEFAULT_PASSWORD: '1234'
+    ports:
+      - '5050:80'
+    depends_on:
+      - postgresqldb
+    networks:
+      - postgresql-net
