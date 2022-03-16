@@ -7,7 +7,7 @@ import com.helpdeskapi.domain.enums.Priority;
 import com.helpdeskapi.domain.enums.Profile;
 import com.helpdeskapi.domain.enums.Status;
 import com.helpdeskapi.repository.CustomerRepository;
-import com.helpdeskapi.repository.TechnicanRepository;
+import com.helpdeskapi.repository.TechnicianRepository;
 import com.helpdeskapi.repository.TicketRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,7 +18,7 @@ import java.util.List;
 public class DBService {
 
     @Autowired
-    private TechnicanRepository technicanRepository;
+    private TechnicianRepository technicianRepository;
 
     @Autowired
     private CustomerRepository customerRepository;
@@ -34,7 +34,7 @@ public class DBService {
 
         Ticket ticket = new Ticket(null, Priority.MIDDLE, Status.IN_PROGRESS, "Chamado 01", "Primeiro chamado", customer, technician);
 
-        technicanRepository.saveAll(List.of(technician));
+        technicianRepository.saveAll(List.of(technician));
         customerRepository.saveAll((List.of(customer)));
         ticketRepository.saveAll(List.of(ticket));
     }
