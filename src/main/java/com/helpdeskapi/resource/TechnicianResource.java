@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/api/v1/technicians")
 @RequiredArgsConstructor
@@ -20,5 +22,10 @@ public class TechnicianResource {
     @GetMapping("/{id}")
     public ResponseEntity<TechnicianDTO> findById(@PathVariable Long id){
         return ResponseEntity.ok(mapper.map(service.findById(id)));
+    }
+
+    @GetMapping
+    public ResponseEntity<List<TechnicianDTO>> findAll(){
+        return ResponseEntity.ok(mapper.map(service.findAll()));
     }
 }
