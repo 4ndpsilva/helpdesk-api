@@ -1,6 +1,5 @@
 package com.helpdeskapi.domain.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.helpdeskapi.domain.enums.Profile;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -15,7 +14,8 @@ import java.util.List;
 @NoArgsConstructor
 @Entity(name = "TB_CUSTOMER")
 public class Customer extends Person implements Serializable {
-    @JsonIgnore
+    private static final long serialVersionUID = 1L;
+
     @OneToMany(mappedBy = "customer")
     private List<Ticket> tickets = new ArrayList<>();
 

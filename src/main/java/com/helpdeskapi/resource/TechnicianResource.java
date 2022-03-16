@@ -1,6 +1,7 @@
 package com.helpdeskapi.resource;
 
-import com.helpdeskapi.domain.entity.Technician;
+import com.helpdeskapi.domain.dto.TechnicianDTO;
+import com.helpdeskapi.mapper.TechnicianMapper;
 import com.helpdeskapi.service.TechnicianService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -14,9 +15,10 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor
 public class TechnicianResource {
     private final TechnicianService service;
+    private final TechnicianMapper mapper;
 
     @GetMapping("/{id}")
-    public ResponseEntity<Technician> findById(@PathVariable Long id){
-        return ResponseEntity.ok(service.findById(id));
+    public ResponseEntity<TechnicianDTO> findById(@PathVariable Long id){
+        return ResponseEntity.ok(mapper.map(service.findById(id)));
     }
 }
