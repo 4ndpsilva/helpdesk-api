@@ -28,13 +28,15 @@ public class DBService {
 
     public void initDB(){
         Technician technician = new Technician(null, "Valdir Cesar", "12345678901", "email@prov.com", "123");
+        Technician technician2 = new Technician(null, "João da Silva", "88888888888", "email2@prov.com", "123");
         technician.addProfile(Profile.ADMIN);
+        technician2.addProfile(Profile.TECH);
 
         Customer customer = new Customer(null, "Cliente 1", "99999999999", "email@provedor.com", "123");
 
         Ticket ticket = new Ticket(null, Priority.MIDDLE, Status.IN_PROGRESS, "Chamado 01", "Primeiro chamado", customer, technician);
 
-        technicianRepository.saveAll(List.of(technician));
+        technicianRepository.saveAll(List.of(technician, technician2));
         customerRepository.saveAll((List.of(customer)));
         ticketRepository.saveAll(List.of(ticket));
     }

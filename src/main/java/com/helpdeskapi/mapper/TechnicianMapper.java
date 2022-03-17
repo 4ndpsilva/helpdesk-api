@@ -5,6 +5,7 @@ import com.helpdeskapi.domain.entity.Technician;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Mapper(componentModel = "spring")
@@ -14,6 +15,14 @@ public interface TechnicianMapper {
     @Mapping(target = "profiles", expression = "java(entity.getProfiles().stream().map(x -> x.getCode()).collect(java.util.stream.Collectors.toSet()))")
     TechnicianDTO map(Technician entity);
 
-    @Mapping(target = "profiles", expression = "java(entity.getProfiles().stream().map(x -> x.getCode()).collect(java.util.stream.Collectors.toSet()))")
-    List<TechnicianDTO> map(List<Technician> entities);
+    default List<TechnicianDTO> map(List<Technician> entities){
+        final List<TechnicianDTO> listDTO = new ArrayList<>();
+
+        entities.forEach(e -> {
+            final TechnicianDTO dto = map(e);
+            listDTO.add(dto);
+        });
+
+        return listDTO;
+    }
 }
