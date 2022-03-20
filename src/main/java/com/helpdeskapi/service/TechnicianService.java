@@ -13,6 +13,10 @@ import java.util.List;
 public class TechnicianService {
     private final TechnicianRepository repository;
 
+    public Technician save(Technician technician){
+        return repository.save(technician);
+    }
+
     public Technician findById(Long id){
         return repository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Técnico não encontrado"));
